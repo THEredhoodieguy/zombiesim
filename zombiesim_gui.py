@@ -27,7 +27,7 @@ class Grid(object):
 		pygame.display.set_caption("Zombie Survival Sim")
 
 		myfont = pygame.font.Font(None, 30)
-		
+
 		clock = pygame.time.Clock()
 
 		done = False
@@ -56,7 +56,7 @@ class Grid(object):
 				pygame.draw.rect(screen,
 					RED,
 					[math.floor(i.xcord * 10),
-					math.floor(i.ycord * 10), 
+					math.floor(i.ycord * 10),
 					10, 10
 					])
 
@@ -64,7 +64,7 @@ class Grid(object):
 				pygame.draw.rect(screen,
 					BLUE,
 					[math.floor(i.xcord * 10),
-					math.floor(i.ycord * 10), 
+					math.floor(i.ycord * 10),
 					10, 10
 					])
 
@@ -75,3 +75,7 @@ class Grid(object):
 			pygame.display.update()
 
 		pygame.quit()
+
+
+if __name__ == "__main__":
+	grid = Grid(100, 100, 500, 3)
