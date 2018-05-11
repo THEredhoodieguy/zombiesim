@@ -25,7 +25,7 @@ class Human(object):
 		self.xcord = xcord
 		self.ycord = ycord
 
-		#The x and y bounds represent the walls of the simulation. The cordinate grid 
+		#The x and y bounds represent the walls of the simulation. The cordinate grid
 		#goes from 0 to xbound and 0 to ybound.
 		self.xbound = xbound
 		self.ybound = ybound
@@ -64,7 +64,7 @@ class Human(object):
 	def set_direction(self):
 		"""The human tries to run away from the closest zombie
 		if there are no nearby zombies, the human takes a random direction"""
-		
+
 		if(len(self.sim.zombies) > 0 and self.closest_zombie != None):
 			self.direction = -get_direction(self.closest_zombie.xcord - self.xcord, self.closest_zombie.ycord - self.ycord)
 			self.direction += (random.random() - 0.5) * .25 * math.pi
@@ -95,7 +95,7 @@ class Human(object):
 
 
 	def die(self):
-		"""If a human is attacked by a zombie, they will die. This function 
+		"""If a human is attacked by a zombie, they will die. This function
 		removes them from the action array"""
 
 		self.sim.humans.remove(self)
@@ -131,7 +131,7 @@ class Human(object):
 		if(self.closest_zombie != None):
 			dist_to_closest_zombie = abs( ((self.closest_zombie.xcord - self.xcord)**2 + (self.closest_zombie.ycord - self.ycord)**2)**0.5 )
 		else:
-			dist_to_closest_zombie = math.sqrt(self.xbound**2 + self.ybound**2)		
+			dist_to_closest_zombie = math.sqrt(self.xbound**2 + self.ybound**2)
 		if(dist_to_closest_zombie > self.xbound / 4):
 			self.closest_zombie = None
 		self.set_direction()
@@ -149,7 +149,7 @@ class Human(object):
 
 class Zombie(object):
 	""""""
-	
+
 	def __init__(self, xcord, ycord, xbound, ybound, sim):
 		self.xcord = xcord
 		self.ycord = ycord
@@ -175,7 +175,7 @@ class Zombie(object):
 	def set_direction(self):
 		"""The zombie sets after the nearest human
 		if there are no nearby humans, the zombie takes a random direction"""
-		
+
 		if(len(self.sim.humans) > 0):
 			self.direction = get_direction(self.closest_human.xcord - self.xcord, self.closest_human.ycord - self.ycord)
 			self.direction += (random.random() - 0.5) * .5 * math.pi
@@ -242,7 +242,7 @@ class Zombie(object):
 		else:
 			self.hunger -= 40
 		self.closest_human.get_eaten()
-		print("A Zombie has eaten")
+		# print("A Zombie has eaten")
 
 
 	def die(self):
@@ -256,7 +256,7 @@ class Zombie(object):
 
 		if(self.incr == 0 or self.closest_human not in self.sim.humans):
 			self.find_closest_human()
-		
+
 		self.set_direction()
 		self.xvel, self.yvel = get_velocity(self.speed, self.direction)
 
@@ -279,10 +279,10 @@ class Zombie(object):
 
 class Simulator(object):
 	"""docstring for Simulator"""
-	
+
 
 	def __init__(self, xbound, ybound, num_humans, num_zombies):
-		
+
 		self.xbound = xbound
 		self.ybound = ybound
 
